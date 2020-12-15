@@ -3,6 +3,8 @@ $(document).ready(function(){
     $('.sidenav').sidenav({edge: "right"});
     // Accordian tasks
     $('.collapsible').collapsible();
+    // Tooltipped note on hover
+    $('.tooltipped').tooltip();
   });
 
 
