@@ -67,6 +67,23 @@
                         </label>
 					</div>
 				</div>
+            </div>
+            <!-- is complete toggle -->
+			<div class="row">
+				<div class="input-field col s12">
+					<div class="switch">
+                        <i class="fas fa-exclamation-circle prefix light-blue-text text-darken-4"></i>
+						<label for="is_complete">
+                            {% if task.is_complete == "on" %}
+                                <input type="checkbox" id="is_complete" name="is_complete" checked>
+                            {% else %}
+                                <input type="checkbox" id="is_complete" name="is_complete">
+                            {% endif %}
+                            <span class="lever"></span>
+                            Is Complete
+                        </label>
+					</div>
+				</div>
 			</div>
             <!-- submit button -->
             <div class="row">
