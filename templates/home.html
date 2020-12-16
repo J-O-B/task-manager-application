@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+        <div class="row welcome">
+            <div class="col s12">
+                <div class="card indigo lighten-2">
+                    <div class="card-content white-text text-shadow center-align">
+                        <h1 class="card-titl">Welcome To Task Manager</h1>
+                        <h3 class="center-align white-text text-shadow">An electronic post it note!</h3>
+                        <p class="center-align white-text text-shadow">
+                            To use this app simply create a profile, than add tasks to your task list. Once a task is complete,<br>
+                            you can edit this task and mark the task as complete to save it to the completed tasks section.
+                        </p>
+                    </div>
+                    <div class="card-action welcome-buttons">
+                        <div class="col s6 center-align">
+                            <a href="{{ url_for('register') }}" class="sign-up-button btn-large green white-text lighten-2 text-shadow">Sign Up</a>
+                        </div>
+                        <div class="col s6 center-align">
+                            <a href="{{ url_for('login') }}" class="login-button btn-large blue white-text lighten-2 text-shadow">Log In</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+{% endblock %}

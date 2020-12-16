@@ -19,12 +19,13 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
+def home():
+    return render_template("home.html")
+
 @app.route("/get_tasks")
 def get_tasks():
     tasks = list(mongo.db.tasks.find())
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-    return render_template("tasks.html", tasks=tasks, username=username)
+    return render_template("tasks.html", tasks=tasks)
 
 
 @app.route("/register", methods=["GET", "POST"])

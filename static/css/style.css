@@ -14,3 +14,13 @@
     margin: 5px;
     line-height: 42px;
 }
+.welcome{
+    margin-top:150px;
+}
+.welcome-buttons{
+    height:90px;
+}
+.sign-up-button,
+.login-button{
+    font-weight: 700;
+}
