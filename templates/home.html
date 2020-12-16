@@ -1,7 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
 
-
+    {% if session.user %}
+        <div class="row welcome">
+                <div class="col s12">
+                    <div class="card indigo lighten-2">
+                        <div class="card-content white-text text-shadow center-align">
+                            {% set name = session['user']|capitalize %}
+                            <h1 class="card-titl">Welcome Back {{ name }}</h1>
+                            <h3 class="center-align white-text text-shadow">Your Tasks Await</h3>
+                        </div>
+                        <div class="card-action welcome-buttons">
+                            <div class="col s4 center-align">
+                                <a href="{{ url_for('profile', username=session['user']) }}" class="btn-large blue white-text lighten-2 text-shadow">Profile</a>
+                            </div>
+                            <div class="col s4 center-align">
+                                <a href="{{ url_for('get_tasks') }}" class="btn-large blue white-text lighten-2 text-shadow">View Tasks</a>
+                            </div>
+                            <div class="col s4 center-align">
+                                <a href="{{ url_for('add_task') }}" class="btn-large blue white-text lighten-2 text-shadow">Add Task</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    {% else %}
         <div class="row welcome">
             <div class="col s12">
                 <div class="card indigo lighten-2">
@@ -24,6 +47,8 @@
                 </div>
             </div>
         </div>
+    
+    {% endif %}
         
 
 {% endblock %}

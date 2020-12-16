@@ -30,6 +30,16 @@ def get_tasks():
     return render_template("tasks.html", tasks=tasks)
 
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    # for future use:
+    # python3, then from app import mongo
+    # then mongo.db.tasks.create_index([("task_name", "text"),("task_description", "text")])
+    tasks = list(mongo.db.tasks.find({"$text": {"$search": query}}))
+    return render_template("tasks.html", tasks=tasks)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -140,6 +150,7 @@ def edit_task(task_id):
         }
         mongo.db.tasks.update({"_id": ObjectId(task_id)}, submit)
         flash("Task Successfully Updated")
+        return redirect(url_for("get_tasks"))
 
     task = mongo.db.tasks.find_one({"_id": ObjectId(task_id)})
     categories = mongo.db.categories.find().sort("category_name", 1)
@@ -184,6 +195,13 @@ def edit_category(category_id):
 
     category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
     return render_template("edit_category.html", category=category)
+
+
+@app.route("/delete_category/<category_id>")
+def delete_category(category_id):
+    mongo.db.categories.remove({"_id": ObjectId(category_id)})
+    flash("Category Deleted")
+    return redirect(url_for("get_categories"))
 
 
 if __name__ == "__main__":
